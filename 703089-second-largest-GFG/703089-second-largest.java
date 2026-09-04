@@ -11,8 +11,6 @@ class Solution {
             else if(arr[i]>seclargest&&arr[i]!=largest){
                 seclargest=arr[i];
             }
-            
-            
         }
         if(seclargest==Integer.MIN_VALUE){
             return -1;
