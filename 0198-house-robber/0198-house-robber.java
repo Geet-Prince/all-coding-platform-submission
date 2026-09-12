@@ -1,14 +1,22 @@
 class Solution {
     public int rob(int[] nums) {
-        return recur(nums,0);
+        int[] memo=new int[nums.length];
+        Arrays.fill(memo,-1);
+        return solve(nums,memo,0);
     }
-    private int recur(int nums[],int i){
-        if(i>=nums.length){
+    private int solve(int nums[],int memo[],int i){
+        if(i>=nums.length)
+        {
             return 0;
         }
-        int take=nums[i]+recur(nums,i+2);
-        int skip=recur(nums,i+1);
-        return Math.max(take,skip);
+        if (memo[i] != -1) {
+            return memo[i];
+        }
+
+        int select=nums[i]+solve(nums,memo,i+2);
+        int skip=solve(nums,memo,i+1);
+        memo[i] = Math.max(select, skip);
+        return memo[i];
     }
 }
 
