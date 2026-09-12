@@ -1,9 +1,18 @@
 class Solution {
     public int fib(int n) {
-        if(n<=1){
+        int memo[]=new int[n+1];
+        Arrays.fill(memo,-1);
+        return solu(n,memo);
+    }
+    private int solu(int n,int memo[]){
+        if(n<2){
             return n;
         }
-        return fib(n-1)+fib(n-2);
+        if(memo[n]!=-1){
+            return memo[n];
+        }
+        memo[n]=solu(n-1,memo)+solu(n-2,memo);
+        return memo[n];
     }
 }
 
