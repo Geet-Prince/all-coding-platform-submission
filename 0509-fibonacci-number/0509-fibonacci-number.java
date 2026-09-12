@@ -1,18 +1,16 @@
 class Solution {
     public int fib(int n) {
-        int memo[]=new int[n+1];
-        Arrays.fill(memo,-1);
-        return solu(n,memo);
-    }
-    private int solu(int n,int memo[]){
-        if(n<2){
-            return n;
+        if (n==0){
+            return 0;
         }
-        if(memo[n]!=-1){
-            return memo[n];
+        int prev0=0;
+        int prev1=1;
+        for(int i=2;i<=n;i++){
+            int cur=prev0+prev1;
+            prev0=prev1;
+            prev1=cur;
         }
-        memo[n]=solu(n-1,memo)+solu(n-2,memo);
-        return memo[n];
+        return prev1;
     }
 }
 
