@@ -1,18 +1,16 @@
 class Solution {
     public int climbStairs(int n) {
-        int memo[]=new int[n+1];
-        Arrays.fill(memo,-1);
-        return ways(n,memo);
-    }
-    private int ways(int n,int memo[]){
         if(n<=2){
             return n;
         }
-        if(memo[n]!=-1){
-            return memo[n];
+        int tabu[]=new int[n+1];
+        
+        tabu[1]=1;
+        tabu[2]=2;
+        for(int i=3;i<=n;i++){
+            tabu[i]=tabu[i-1]+tabu[i-2];
         }
-        memo[n]=ways(n-1,memo)+ways(n-2,memo);
-        return memo[n];
+        return tabu[n];
     }
 }
 
