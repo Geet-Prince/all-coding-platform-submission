@@ -3,14 +3,14 @@ class Solution {
         if(n<=2){
             return n;
         }
-        int tabu[]=new int[n+1];
-        
-        tabu[1]=1;
-        tabu[2]=2;
-        for(int i=3;i<=n;i++){
-            tabu[i]=tabu[i-1]+tabu[i-2];
+        int prev0=1;
+        int prev1=2;
+        for(int i=2;i<n;i++){
+            int curr=prev0+prev1;
+            prev0=prev1;
+            prev1=curr;
         }
-        return tabu[n];
+        return prev1;
     }
 }
 
